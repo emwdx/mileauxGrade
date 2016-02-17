@@ -3,7 +3,7 @@ var grades = ReactiveVar();
 
 Tracker.autorun(function(){
 
-allGrades.set(Grades.find().fetch());
+grades.set(Grades.find().fetch()); //I don't want to use a separate reactive variable for each helper. I want to be able to access the Grades.find() cursor as we do in a Meteor app and have it be reactive.
 
 
 })
@@ -18,6 +18,7 @@ grades: function(){
 
 
 return grades.get();
+//return Grades.find()
 
 }
 
