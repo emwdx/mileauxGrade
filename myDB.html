@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "css/style.css">
+<script type="text/javascript">Meteor = {};</script>
+<script type="text/javascript" src = "js/lodash.compat.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src = "js/minimongo/tracker.js"></script>
+
+	<script type="text/javascript" src = "js/minimongo/random.js"></script>
+	<script type="text/javascript" src = "js/minimongo/base64.js"></script>
+	<script type="text/javascript" src = "js/minimongo/ejson.js"></script>
+	<script type="text/javascript" src = "js/minimongo/ordered_dict.js"></script>
+	<script type="text/javascript" src = "js/minimongo/id_map.js"></script>
+	<script type="text/javascript" src = "js/minimongo/fiber_stubs_client.js"></script>
+<script type="text/javascript" src = "js/minimongo/minimongo.js"></script>
+<script type="text/javascript" src = "js/minimongo/wrap_transform.js"></script>
+<script type="text/javascript" src = "js/minimongo/helpers.js"></script>
+<script type="text/javascript" src = "js/minimongo/selector.js"></script>
+<script type="text/javascript" src = "js/minimongo/sort.js"></script>
+<script type="text/javascript" src = "js/minimongo/projection.js"></script>
+<script type="text/javascript" src = "js/minimongo/modify.js"></script>
+<script type="text/javascript" src = "js/minimongo/diff.js"></script>
+
+<script type="text/javascript" src = "js/minimongo/observe.js"></script>
+<script type="text/javascript" src = "js/minimongo/objectid.js"></script>
+
+<script>
+//var minimongo = require("minimongo");
+
+//var LocalDb = minimongo.MemoryDb;
+
+// Create local db (in memory database with no backing)
+
+//db = new LocalDb();
+
+// Add a collection to the database
+//db.addCollection("grades");
+
+//var Grades = db.grades;
+
+var Grades = new LocalCollection("grades")
+
+// Always use upsert for both inserts and modifies
+
+
+</script>
+
+
+<!--Enter templates below this line.-->
+
+<script type="text/spacebars" name="main">
+<div class = "container">
+{{>mgHeader}}
+{{>gradeDisplay}}
+{{>enterGrade}}
+{{>listGrades}}
+</div>
+</script>
+
+<script type = "text/spacebars" name = "enterGrade">
+
+
+<div class = "row">
+<div class = "col-md-4">
+<div class="form-group">
+	<label for="course">Course</label>
+	<select id = "course" class = "form-control">
+	<option value = ""></option>
+	<option value = "math">Math</option>
+	<option value = "science">Science</option>
+	<option value = "language-arts">Language Arts</option>
+	<option value = "social-studies">Social Studies</option>
+
+	</select>
+</div>
+</div>
+
+<div class = "col-md-4">
+  <div class="form-group">
+    <label for="earnedPoints">Points Earned</label>
+    <input type="number" class="form-control" name = "earnedPoints" id="earnedPoints" placeholder="Points Received">
+  </div>
+</div>
+<div class = "col-md-4">
+	<div class="form-group">
+		<label for="totalPoints">Total Points</label>
+		<input type="number" class="form-control" id="totalPoints" name = "totalPoints" placeholder="Total Points">
+	</div>
+</div>
+</div>
+<div class = "row">
+<div class = "col-md-12">
+  <div class="form-group">
+    <label for="comments">comments</label>
+    <input type="text" class="form-control" name = "comments" id="comments" placeholder = "Enter comments about this grade">
+
+	</div>
+	</div>
+</div>
+<div class = "row">
+<div class = "col-md-4 col-md-offset-4">
+  <div class="form-group">
+    <button id = "enterGrade">Enter Grade</button>
+
+	</div>
+	</div>
+	</div>
+
+
+
+</script>
+
+<script type = "text/spacebars" name = "listGrades">
+Current Grades:
+{{#each grades}}
+	{{>grade}}
+{{/each}}
+
+</script>
+
+<script type = "text/spacebars" name = "mgHeader">
+
+<div class = "row text-center">
+<div class = "col-md-6 col-md-offset-3">
+<h2>MileauxGrade Pro</h2>
+</div>
+</div>
+<div class = "row text-center">
+<div class = "col-md-6 col-md-offset-3">
+<i>Increasing your knowledge...one bark at a time.</i>
+</div>
+</div>
+<hr>
+</script>
+
+<script type = "text/spacebars" name = "grade">
+<hr>
+<div class = "row">
+<div class = "col-md-4">
+Course: {{course}}
+</div>
+<div class = "col-md-4">
+Score: {{earned}}/{{total}}
+</div>
+<div class = "col-md-4">
+Percentage: {{percent}}
+</div>
+</div>
+<div class = "row">
+<div class = "col-md-12 bg-info">
+Comments: <b>{{comments}}</b>
+</div>
+</div>
+</script>
+
+<script type = "text/spacebars" name = "gradeDisplay">
+<hr>
+<div class = "row">
+<div class = "col-md-6">
+<h3>Math</h3>
+Cumulative percentage: {{mathPercentage}}
+</div>
+<div class = "col-md-6">
+<h3>Science</h3>
+Cumulative percentage: {{sciencePercentage}}
+</div>
+</div>
+<div class = "row">
+<div class = "col-md-6">
+<h3>Social Studies</h3>
+Cumulative percentage: {{ssPercentage}}
+</div>
+<div class = "col-md-6">
+<h3>Language Arts</h3>
+Cumulative percentage: {{laPercentage}}
+</div>
+</div>
+<hr>
+</script>
+
+
+<!--Put all templates above this line-->
+
+<script src="js/blaze.js"></script>
+<script src ="js/grades.js"></script>
+
+<!--Do not change the above two lines.-->
+
+</head>
+
+<body>
+
+</body>
+
+</html>
